@@ -58,6 +58,7 @@ document.querySelector('.js-auto-play-button').addEventListener('click', () => {
   autoPlay();
 })
 
+//adding keys to play game
 document.body.addEventListener('keydown', (event) => {
   if (event.key === 'r') {
     playGame('rock');
@@ -68,6 +69,7 @@ document.body.addEventListener('keydown', (event) => {
   }
 })
 
+//core functionality of game
 function playGame(playerMove) {
   const computerMove = pickComputerMove();
 
@@ -107,6 +109,7 @@ function playGame(playerMove) {
     score.ties += 1;
   }
 
+  //keeping score on reload
   localStorage.setItem('score', JSON.stringify(score));
 
   updateScoreElement();
@@ -120,15 +123,18 @@ Computer`;
 
 }
 
+//update score after a play
 function updateScoreElement() {
   document.querySelector('.js-score')
     .innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;  
 }
 
+//generating computer moves
 function pickComputerMove() {
   const randomNumber = Math.random();
   let computerMove = '';
 
+  //defining rock, paper and scissors instances
   if (randomNumber >= 0 && randomNumber < 1 / 3) {
     computerMove = 'rock';
   } else if (randomNumber >= 1 / 3 && randomNumber < 2 / 3) {
